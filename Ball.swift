@@ -3,50 +3,61 @@ import Scenes
 import Igis
 import Foundation
 
-class Ball: RenderableEntity, MouseMoveHandler {
+class Ball: RenderableEntity {
 
     let ellipse = Ellipse(center:Point(x:0, y:0), radiusX:45, radiusY:45, fillMode:.fillAndStroke)
     let strokeStyle = StrokeStyle(color:Color(.black))
-    let fillStyle = FillStyle(color:Color(.white))
+    let fillStyle = FillStyle(color:Color(.black))
     let lineWidth = LineWidth(width:5)
     var velocityX : Int
     var velocityY : Int
-    var compressedCounter : UInt
-
-    func onMouseMove(globalLocation: Point, movement: Point) {
-        ellipse.center = globalLocation
-    }
-
+    var leftCurrentScore = 0
+    var leftScore: Text
+    var rightCurrentScore = 0
+    var rightScore: Text
+    var compressedCounter : UInt  
+    var textDisplay = false
     func changeVelocity(velocityX:Int, velocityY:Int) {
         self.velocityX = velocityX
         self.velocityY = velocityY
     }
-
+// initilaizing velocity of ball and the score for the scoreboard
     init() {
         velocityX = 0
         velocityY = 0
         compressedCounter = 0
+        leftScore = Text(location: Point(x:500, y: 50), text: "")
+        leftScore.font = "10pt Arial"
+        rightScore = Text(location: Point(x:750, y: 50), text: "")
+        rightScore.font = "10pt Arial"
         // Using a meaningful name can be helpful for debugging
         super.init(name:"Ball")
     }
+    
     override func setup(canvasSize: Size, canvas: Canvas) {
         // Position the ellipse at the center of the canvas
         ellipse.center = canvasSize.center
-        dispatcher.registerMouseMoveHandler(handler:self)
     }
 
-    override func teardown() {
-        dispatcher.unregisterMouseMoveHandler(handler:self)
-    }
+    // Removed this in order to make ball independent from the cursorx
+    //override func teardown() {
+    //  dispatcher.unregisterMouseMoveHandler(handler:self)
+    //}
+
     func interactionLayer() -> InteractionLayer{
         guard let layer = layer as? InteractionLayer else {
             fatalError("InteractionLayer required")
         }
         return layer
     }
-
+    
     override func render(canvas:Canvas) {
-        canvas.render(ellipse, strokeStyle, fillStyle, lineWidth)
+        canvas.render(strokeStyle, fillStyle, lineWidth, ellipse)
+        let strokeStyle = FillStyle(color:Color(.black))
+        let lineWidth = LineWidth(width:5)
+        leftScore = Text(location: Point(x:500, y:50), text: "\(leftCurrentScore)")
+        rightScore = Text(location: Point(x:1200, y:50), text: "\(rightCurrentScore)")
+        canvas.render(strokeStyle, lineWidth, leftScore, rightScore)
     }
 
     override func boundingRect() -> Rect {
@@ -55,6 +66,7 @@ class Ball: RenderableEntity, MouseMoveHandler {
         return Rect (topLeft: topLeft, size: size)
     }
 
+    // calculates 
     override func calculate(canvasSize: Size) {
         ellipse.center += Point(x: velocityX, y: velocityY)
 
@@ -77,7 +89,7 @@ class Ball: RenderableEntity, MouseMoveHandler {
 
         // If we're too far to the left or right, we bounce the x velocity
         if tooFarLeft || tooFarRight {
-            velocityX = -velocityX - 3
+            velocityX = -velocityX - 4
 
             ellipse.radiusX = 35
             ellipse.radiusY = 60
@@ -86,14 +98,17 @@ class Ball: RenderableEntity, MouseMoveHandler {
 
             if tooFarLeft {
                 InteractionLayer().incrementRightScore()
+                rightCurrentScore += 1
+                
             } else {
                 InteractionLayer().incrementLeftScore()
+                leftCurrentScore += 1
             }
             print("increment score")
         }
 
         if tooFarUp || tooFarDown {
-            velocityY = -velocityY - 3
+            velocityY = -velocityY - 4
 
             ellipse.radiusX = 60
             ellipse.radiusY = 35
@@ -108,12 +123,6 @@ class Ball: RenderableEntity, MouseMoveHandler {
         }else{
             compressedCounter -= 1
         }
-
-
-
-
-
-
 
     }
 }

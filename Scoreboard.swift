@@ -17,14 +17,13 @@ class Scoreboard: RenderableEntity {
     }
 
     public func incrementScore() {
-        currentScore += 1
+   currentScore += 1
     }
-    
     override func render(canvas:Canvas) {
-        let strokeStyle = StrokeStyle(color:Color(.blue))
+        let strokeStyle = FillStyle(color:Color(.black))
         let lineWidth = LineWidth(width:5)
-        score = Text(location: Point(x:500, y:50), text: "\(currentScore)")
-        score2 = Text(location: Point(x:1200, y:50), text: "\(currentScore)")
+        score = Text(location: Point(x:500, y:50), text: "")
+        score2 = Text(location: Point(x:1200, y:50), text: "")
         score.font = "50pt Arial"
         canvas.render(strokeStyle, lineWidth, score, score2)
     }
