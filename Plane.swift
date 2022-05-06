@@ -18,7 +18,7 @@ class Plane: RenderableEntity {
 
     init(rect:Rect) {
 
-        guard let planeURL = URL(string:"https://i.postimg.cc/KjxHKd3m/REAL.png") else {
+        guard let planeURL = URL(string:"https://lh3.googleusercontent.com/MmUrhsgFU6jN6EZ9xx9vLfZBBl2r3asGFGF1VTxoONVNLuat8J31aPbefM8bvRpaoNpaWxRJd4eGfVMt2wzUf5eTENKikjAgMMjaT7QTATC3NlI7gkESxfDs_gSJPrddDaSyq6JflRPuzg8L8ml8ZJtrB6cFONQ3JU9mP_HRaWPotSzPOizRH9KcCf6GkmX2vw6iH4thUCOLfR21KIgC5jGfx6NZ4WLIDWShFY3yNZ_RwjAV45n1cQhk6_fwFrsM1n-ghXY40VIIgvunzbqIFLkrSsQDBkf_ZDMPLY8_RHqxYdboFUtWEaalD2JLPBiTwweJGbnVoKuexYecHhb-t_Q6ktWAeV4HATGUbd4FR1X-Yq0LhBZWMMSJ_VgKkHNDehd4dBqH8YeCTu0T0oJxPgdiZf6V9tv2er7qJOpFWPU0Qh_TqqJowWagGhnMzUs7nNHhz4zmGhc_hJOqzG4QcSoxxRin4_AcxRzCHzE7zqUlvkeBWCYty5PJh-bVvN5F-WCTNN5ICED5wuWdRdXG7OcVfmqC1yG6Sg_tLe3-dCqNDxCIZSd4y2VT5-pxabFkgCt5TvulR6KUg8y1TLkFx1pN9n01Z8h8oiBL0A5ecNjIORz3LGLiEgdw8Jrjv07yyFvujH0Q4j7ET72t_3XCumutQMN0JNj7evnyF--IwCUDzt7Rqna6JIVScUbgRXBkDcp7UZ4_28BpuH_tLdEBZGSpoKZCINq8MAql35cuaBIbTG6KrGPk4cKXHYA=w283-h178-no?authuser=0") else {
                                         fatalError("Failed to create URL for whitehouse")
         }
 
