@@ -1,5 +1,7 @@
 import Scenes
 import Igis
+import Foundation
+
 /*
  This class is responsible for the interaction Layer.
  Internally, it maintains the RenderableEntities for this layer.
@@ -8,11 +10,12 @@ import Igis
 
 class InteractionLayer : Layer, KeyDownHandler {
     var canvasSize = Size(width: 0, height: 0)
-
     let ball = Ball()
+    // let player = Obstacle(rect:Rect(size:Size(width:15, height:450)))
     let paddleLeft = Paddle(rect:Rect(size:Size(width:25, height:150)))
     let paddleRight = Paddle(rect:Rect(size:Size(width:25, height:150)))
-    
+    let Planes = Plane(rect:Rect(size:Size(width:100, height:25)))
+    let flagRunners = flagRunner(rect:Rect(size:Size(width:100, height:25)))
     init() {
         // Using a meaningful name can be helpful for debugging
         super.init(name:"Interaction")
@@ -20,9 +23,11 @@ class InteractionLayer : Layer, KeyDownHandler {
         // We insert our RenderableEntities in the constructor
         insert(entity: ball, at: .front)
         ball.changeVelocity(velocityX: 4, velocityY: 3 )
+        //   insert(entity: player, at: .front)
         insert(entity: paddleLeft, at: .front)
         insert(entity: paddleRight, at: .front)
-        
+        insert(entity:Planes, at: .front)
+        insert(entity:flagRunners, at: .front)
     }
 
     // sets the controls and keys for our paddles going up and down both on the left and the right side
@@ -58,7 +63,8 @@ class InteractionLayer : Layer, KeyDownHandler {
 
     override func preSetup(canvasSize: Size, canvas: Canvas) {
         self.canvasSize = canvasSize
-        paddleLeft.move(to:Point(x: 10, y: canvasSize.center.y))
+        //      player.move(to:Point(x: -10, y: 0))
+        paddleLeft.move(to:Point(x: 0, y: canvasSize.center.y))
         paddleRight.move(to:Point(x: canvasSize.width - 20,  y: canvasSize.center.y))
         dispatcher.registerKeyDownHandler(handler: self)
     }
@@ -85,6 +91,16 @@ class InteractionLayer : Layer, KeyDownHandler {
     //tells us when either the left or right paddle is impacted
     override func preCalculate(canvas: Canvas) {
         let ballBoundingRect = ball.boundingRect()
+
+        // This code isn't used in our final project due to bugs and not enough time to debug
+        //        let playerBoundingRect = player.boundingRect()
+        //      let playerContainment = playerBoundingRect.containment(target: ballBoundingRect)
+        //    let playerTargetContainmentSet: ContainmentSet = [.overlapsRight, .contact]
+
+        //      if playerTargetContainmentSet.isSubset(of: playerContainment){
+        //        print("LEFT PADDLE IMPACTED")
+        //      ball.velocityX = -ball.velocityX
+        //}
 
         let leftPaddleBoundingRect = paddleLeft.boundingRect()
         let leftPaddleContainment = leftPaddleBoundingRect.containment(target: ballBoundingRect)

@@ -1,4 +1,3 @@
-
 import Scenes
 import Igis
 import Foundation
@@ -7,7 +6,7 @@ class Ball: RenderableEntity {
 
     let ellipse = Ellipse(center:Point(x:0, y:0), radiusX:45, radiusY:45, fillMode:.fillAndStroke)
     let strokeStyle = StrokeStyle(color:Color(.black))
-    let fillStyle = FillStyle(color:Color(.black))
+    let fillStyle = FillStyle(color:Color(.darkblue))
     let lineWidth = LineWidth(width:5)
     var velocityX : Int
     var velocityY : Int
@@ -21,7 +20,7 @@ class Ball: RenderableEntity {
         self.velocityX = velocityX
         self.velocityY = velocityY
     }
-// initilaizing velocity of ball and the score for the scoreboard
+    // initilaizing velocity of ball and the score for the scoreboard
     init() {
         velocityX = 0
         velocityY = 0
@@ -53,11 +52,13 @@ class Ball: RenderableEntity {
     
     override func render(canvas:Canvas) {
         canvas.render(strokeStyle, fillStyle, lineWidth, ellipse)
-        let strokeStyle = FillStyle(color:Color(.black))
+        let strokeStyleR = FillStyle(color:Color(.red))
+        let strokeStyleB = FillStyle(color:Color(.blue))
         let lineWidth = LineWidth(width:5)
-        leftScore = Text(location: Point(x:500, y:50), text: "\(leftCurrentScore)")
-        rightScore = Text(location: Point(x:1200, y:50), text: "\(rightCurrentScore)")
-        canvas.render(strokeStyle, lineWidth, leftScore, rightScore)
+        leftScore = Text(location: Point(x:820, y:400), text: "\(leftCurrentScore)")
+        rightScore = Text(location: Point(x:940, y:400), text: "\(rightCurrentScore)")
+        canvas.render(strokeStyleR, lineWidth, leftScore)
+        canvas.render(strokeStyleB, lineWidth, rightScore)
     }
 
     override func boundingRect() -> Rect {
@@ -99,10 +100,15 @@ class Ball: RenderableEntity {
             if tooFarLeft {
                 InteractionLayer().incrementRightScore()
                 rightCurrentScore += 1
-                
+                ellipse.center = canvasSize.center                
+                velocityX = 5
+                velocityY = 5
             } else {
                 InteractionLayer().incrementLeftScore()
                 leftCurrentScore += 1
+                ellipse.center = canvasSize.center
+                velocityX = 5
+                velocityY = 5
             }
             print("increment score")
         }
