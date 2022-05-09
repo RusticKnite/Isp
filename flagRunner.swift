@@ -18,7 +18,7 @@ class flagRunner: RenderableEntity {
 
     init(rect:Rect) {
 
-        guard let flagRunnerURL = URL(string:"https://photos.google.com/share/AF1QipMCLzrPB0hWztCpJdABvCYJiPrf9Dvv_xb81s3G8A7RPptmJuzaIn3Y91A8YY6PnQ/photo/AF1QipNI2AvVLZFOFpyDX0lluZC0bxGXV4frqzr4jJOr?key=akxNRElLVkU1VTVqQXQxUkJlNzRMRjJhNks5dnlR") else {
+        guard let flagRunnerURL = URL(string:"https://lh3.googleusercontent.com/pw/AM-JKLWvcAlOKDrJ4YjD8N3QYsQNGTnnEOaxjstaXSTVu-Ueh3iR4CpWIdI7M9gT0f3SV9NFSjH02YynY-EauC9alWvi4vYKtNb2kL95aTJfnlZcZO8VkT6FAv0u4rhrr1Yk54SmTgYKEzPD8aA3tzcc52ih=w500-h499-no?authuser=0") else {
             fatalError("Failed to create URL for whitehouse")
         }
 
