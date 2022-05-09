@@ -18,7 +18,7 @@ class flagRunner: RenderableEntity {
 
     init(rect:Rect) {
 
-        guard let flagRunnerURL = URL(string:"https://lh3.googleusercontent.com/FNylr3cG5U7YmeW1l9L1xR26_R-aEJXIp6kHQG6jQ_Gmmi5EgSPJGx-e1COaqQKGZ_IKrn_5rSZtZ5uTyrunqaSs9Me9nutinZleZB8LDATgPrT9MPX7Gp7tDxrhLPjIw2SZDcFrmLQUESyd9EiRAvRrJQz1zLItJgF7aKqp4H-FO8_nZ63dDRULpKnfEIdy7EYYFzs7CZe83855gbkKJlN4ZtDMhXwLcjgw2FG2YG2b9tzympy5V-4D7nUCHkCcyid-MxCjj0LIZZwcfnx3fbKBSORxU-SuAyfV9-B5fw-kJ3fjsEtumVpgwqQElLNonuXguw2EcyQmNgHp9dTsmhTIYWj-S3H3ONinrGDGqTnVTs4KSqapNJNi2mSjDDIGzx_MlotSBHujHqQuoOdzsMQPhQGOxhqcyKC3fR7A7l9yNTJCmu6n2Ea9uC-Qlc5G8J8fsDV_Xt_Mibsk_r32V8vLS0drg-s5Qft5L8yQSNXk0dpC9BZod-exrzE1SANviZOn8HyrdtpJeFIiyrHAwfedhUEc0WyDD5KGT_2XGfIi9jzu-g-hW2qgTKZ2kFbfYCv6kpmti53Xc7RFCjam8XiMEAmBLowDmN2lMEPk3mB9uwjEAVGUoT9o0H8nq7cRBfCy6gBKfSpU1SHgHccMfVZPWOcmr_tO9UAEeHXfwI8LKWTKVk9zkuFIXRy2QWsXsSeNyiSZ2Fq8cqsz37x_H7c77sW_qSKVUDYR4Qwk4Yr5Ud2r54fiAp0W5uI=w500-h499-no?authuser=0") else {
+        guard let flagRunnerURL = URL(string:"https://photos.google.com/share/AF1QipMCLzrPB0hWztCpJdABvCYJiPrf9Dvv_xb81s3G8A7RPptmJuzaIn3Y91A8YY6PnQ/photo/AF1QipNI2AvVLZFOFpyDX0lluZC0bxGXV4frqzr4jJOr?key=akxNRElLVkU1VTVqQXQxUkJlNzRMRjJhNks5dnlR") else {
             fatalError("Failed to create URL for whitehouse")
         }
 
